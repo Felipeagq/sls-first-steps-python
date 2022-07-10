@@ -1,0 +1,32 @@
+org: felipeagq
+app: aws-python
+service: aws-python
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: python3.8
+
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /
+          method: get
+  characters:
+    handler: handler.characters
+    events:
+      - http:
+          path: /characters
+          method: get
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
